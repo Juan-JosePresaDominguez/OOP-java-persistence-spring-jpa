@@ -66,6 +66,14 @@ class StudentsRepositoryTest {
     }
 
     @Test
+    void update() {
+        Student aStd = new Student(1L, "Nombre Update", "Apellido Update", 2);
+        System.out.println(aStd);
+        Student updateStd = repoStudents.update(aStd);
+        assertEquals(updateStd.getNombre(), aStd.getNombre());
+    }
+
+    @Test
     void get() {
         Student aStudent = repoStudents.get(2);
         System.out.println(aStudent);
