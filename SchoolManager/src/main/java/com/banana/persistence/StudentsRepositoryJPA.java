@@ -19,6 +19,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf{
         em.getTransaction().begin();
         if(estudiante.isValid()) {
             em.persist(estudiante);
+            estudiante.setNombre("Cambio de nombre");
             em.getTransaction().commit();
         } else {
             em.getTransaction().rollback();

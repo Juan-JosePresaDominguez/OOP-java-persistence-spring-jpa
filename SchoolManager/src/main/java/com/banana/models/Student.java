@@ -19,7 +19,7 @@ public class Student {
     private String nombre;
     @Column(name = "surname")
     private String apellido;
-    //@Transient
+    //@Transient --> Hace que no se tenga que tener en cuenta el campo "curso" a nivel de BB.DD., es decir, no se crea este campo.
     private int curso;
 
     public boolean isValid() {
