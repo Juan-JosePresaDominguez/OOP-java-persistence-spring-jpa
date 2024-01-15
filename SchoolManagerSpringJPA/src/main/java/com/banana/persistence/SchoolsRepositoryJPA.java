@@ -3,7 +3,6 @@ package com.banana.persistence;
 
 import com.banana.models.School;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
@@ -42,7 +41,7 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
             psch.setName(escuela.getName());
             psch.setEstudiantes(escuela.getEstudiantes());
 //            em.getTransaction().commit();
-//            return psch;
+            return psch;
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            em.getTransaction().rollback();
