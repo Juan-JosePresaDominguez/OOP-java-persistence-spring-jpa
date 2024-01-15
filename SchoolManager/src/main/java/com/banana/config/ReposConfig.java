@@ -1,6 +1,7 @@
 package com.banana.config;
 
 import com.banana.persistence.*;
+import com.banana.util.JPAUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,7 @@ public class ReposConfig {
 
         StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
         repo.setEm(emf.createEntityManager());
+        //repo.setEm(JPAUtil.getEntityManagerFactory().createEntityManager());
         repo.setUrlConn(dbUrl);
         return repo;
     }
