@@ -5,7 +5,7 @@ import com.banana.models.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -17,28 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
 @ActiveProfiles("dev")
+@EnableAutoConfiguration
 class StudentsRepositoryTest {
-
-    @Autowired
-    private ApplicationContext context;
-
     @Autowired
     private StudentsRepositoryInf repoStudents;
-
-   /* @BeforeEach
-//    @BeforeAll
-    void setUp() {
-//        context = new ClassPathXmlApplicationContext("beans.xml");
-        context = new AnnotationConfigApplicationContext(StudentsRepository.class);
-        repoStudents = context.getBean(StudentsRepositoryInf.class);
-    }*/
-
-    @Test
-    void testBeans() {
-        assertNotNull(context);
-        assertNotNull(repoStudents);
-        System.out.println("UrlConn: " + repoStudents.getUrlConn());
-    }
 
     @Test
     void getById() {

@@ -34,6 +34,7 @@ public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
     }
 
     @Override
+    @Transactional
     public School update(School escuela) {
 //        try {
 //            em.getTransaction().begin();
