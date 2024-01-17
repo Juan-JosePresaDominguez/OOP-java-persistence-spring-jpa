@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -81,12 +82,22 @@ class SchoolsRepositoryInfTest {
     }
 
     @Test
+    @Transactional      // Si no lo ponemos, se produce error en el "println"
     void getById() throws SQLException {
         School schToFind = schools.get(0);
         School sch = repo.getById(schToFind.getId());
+        System.out.println(sch);
         assertNotNull(sch);
     }
 
+    @Test
+    @Transactional      // Si no lo ponemos, se produce error en el "println"
+    void getAll() throws SQLException {
+        List<School> escuelas = repo.getAll();
+        System.out.println(escuelas);
+        assertNotNull(escuelas);
+        assertTrue(escuelas.size() >= schools.size());
+    }
 
     @AfterAll
     void tearDown() {
@@ -102,7 +113,5 @@ class SchoolsRepositoryInfTest {
         tx.commit();
     }
 
-    @Test
-    void getAll() {
-    }
+
 }
