@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @Repository
 public class SchoolsRepositoryJPA implements SchoolsRepositoryInf {
+
     @PersistenceContext // Accede al emf; emf.createEntityManager();
     EntityManager em;
 

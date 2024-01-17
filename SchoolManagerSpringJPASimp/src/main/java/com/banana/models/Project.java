@@ -19,12 +19,11 @@ public class Project {
     private Long id;
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "proyectos_estudiantes",
             joinColumns = {@JoinColumn(name = "proj_id")},
             inverseJoinColumns = {@JoinColumn(name = "std_id")}
     )
-
     private List<Student> estudiantes = new ArrayList<>();
 }
