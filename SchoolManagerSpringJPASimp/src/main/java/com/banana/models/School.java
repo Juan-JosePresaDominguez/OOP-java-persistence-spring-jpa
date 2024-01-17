@@ -23,8 +23,10 @@ public class School {
 //    @OneToMany
 //    @JoinColumn(name = "school_id")
     //@OneToMany(mappedBy = "mySchool")
-    @OneToMany(cascade = {CascadeType.ALL})
+    //@OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "school_id")
+//    @ToString.Exclude
     private List<Student> estudiantes = new ArrayList<>();
 
     public School(Long id, String name) {
