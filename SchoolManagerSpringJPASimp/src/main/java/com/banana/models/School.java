@@ -20,7 +20,10 @@ public class School {
     private String name;
 
     //    @Transient
-    @OneToMany
+//    @OneToMany
+//    @JoinColumn(name = "school_id")
+    //@OneToMany(mappedBy = "mySchool")
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "school_id")
     private List<Student> estudiantes = new ArrayList<>();
 

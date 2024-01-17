@@ -2,20 +2,18 @@ package com.banana.persistence;
 
 import com.banana.config.SpringConfig;
 import com.banana.models.School;
+import com.banana.models.Student;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
-
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +71,21 @@ class SchoolsRepositoryInfTest {
     }
 
     @Test
+    void addWithStudents() throws SQLException {
+        List<Student> estudiantes = List.of(
+                new Student(null, "Pere", "Perez", 2),
+                new Student(null, "Rosa", "Rosalez", 3)
+        );
+
+        School sch = new School(null, "Mi escuela", estudiantes);
+        repo.add(sch);
+//        System.out.println(sch);
+        assertNotNull(sch);
+        assertTrue(sch.getId() > 0);
+
+    }
+
+    @Test
     void update() throws SQLException {
         School schToChange = schools.get(0);
         School sch = new School(schToChange.getId(), "Mi escuela cambio", null);
@@ -82,19 +95,20 @@ class SchoolsRepositoryInfTest {
     }
 
     @Test
-    @Transactional      // Si no lo ponemos, se produce error en el "println"
+    @Transactional
     void getById() throws SQLException {
-        School schToFind = schools.get(0);
-        School sch = repo.getById(schToFind.getId());
+        //School schToFind = schools.get(0); // Poner uno que exista
+        School sch = repo.getById(4L); // Poner uno que exista
         System.out.println(sch);
         assertNotNull(sch);
     }
 
     @Test
-    @Transactional      // Si no lo ponemos, se produce error en el "println"
+    @Transactional
     void getAll() throws SQLException {
         List<School> escuelas = repo.getAll();
         System.out.println(escuelas);
+
         assertNotNull(escuelas);
         assertTrue(escuelas.size() >= schools.size());
     }
