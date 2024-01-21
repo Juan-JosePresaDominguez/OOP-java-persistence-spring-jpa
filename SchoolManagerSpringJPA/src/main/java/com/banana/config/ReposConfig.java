@@ -49,7 +49,7 @@ public class ReposConfig {
 
         StudentsRepositoryJPA repo = new StudentsRepositoryJPA();
         repo.setEm(em);
-        repo.setUrlConn(dbUrl);
+//        repo.setUrlConn(dbUrl);
         return repo;
     }
 

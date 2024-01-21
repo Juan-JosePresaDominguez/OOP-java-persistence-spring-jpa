@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
-    private String urlConn;
+//    private String urlConn;
 
     @PersistenceContext
     private EntityManager em;

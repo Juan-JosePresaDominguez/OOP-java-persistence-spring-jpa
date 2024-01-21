@@ -20,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.core.Is.is;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
@@ -81,7 +82,7 @@ class ProjectsRepositoryInfTest {
         Project aProject = new Project(1L, newName, null);
         repo.update(aProject);
         assertThat(aProject, notNullValue());
-        assertThat(aProject.getName(), equals(newName));
+        assertThat(aProject.getName(), is(newName));
     }
 
 }

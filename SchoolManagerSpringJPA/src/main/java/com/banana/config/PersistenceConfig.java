@@ -3,7 +3,6 @@ package com.banana.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -58,7 +57,7 @@ public class PersistenceConfig {
         em.setPersistenceUnitName(env.getProperty("schooldb.persistenceUnitName"));
 
         em.setDataSource(schoolDataSource());
-        em.setPackagesToScan("com.banana.models");
+        em.setPackagesToScan("com.banana.models"); // ESCANEO DE CLASES EN JPA
         em.setJpaVendorAdapter(vendorAdapter());
         em.setJpaProperties(additionalProperties());
         return em;

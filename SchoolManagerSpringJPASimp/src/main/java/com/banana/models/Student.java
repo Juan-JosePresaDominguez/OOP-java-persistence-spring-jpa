@@ -29,10 +29,11 @@ public class Student {
     //@ManyToOne(cascade = {CascadeType.ALL})
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "school_id")
-    @ToString.Exclude
+    @ToString.Exclude   //Evitar bucles infinitos
     private School mySchool;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "estudiantes")
+    @ToString.Exclude   //Evitar bucles infinitos
     private Set<Project> proyectos;
 
     public Student(Long id, String nombre, String apellido, int curso) {
