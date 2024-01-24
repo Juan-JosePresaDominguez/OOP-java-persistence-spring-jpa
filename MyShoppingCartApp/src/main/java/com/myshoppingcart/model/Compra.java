@@ -1,20 +1,19 @@
 package com.myshoppingcart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Compra {
     private Integer cid;
-    private int usuario;
-    private int producto;
-    private int cantidad;
+    private Usuario usuario;
+    private List<Producto> productos;
     private LocalDate fecha;
 }

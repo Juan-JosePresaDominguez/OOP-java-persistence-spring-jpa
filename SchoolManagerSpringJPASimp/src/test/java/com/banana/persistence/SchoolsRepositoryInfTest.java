@@ -7,13 +7,16 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +76,16 @@ class SchoolsRepositoryInfTest {
     @Test
     void addWithStudents() throws SQLException {
         List<Student> estudiantes = List.of(
-                new Student(null, "Pere", "Perez", 2),
-                new Student(null, "Rosa", "Rosalez", 3)
+                new Student(null, "Juan", "Perez", 2),
+                new Student(null, "Luisa", "Rosalez", 3)
         );
 
-        School sch = new School(null, "Mi escuela", estudiantes);
+        School sch = new School(null, "Mi escuela con estudiantes", estudiantes);
+
+        for (Student estudiante : estudiantes) {
+            estudiante.setMySchool(sch);
+        }
+
         repo.add(sch);
 //        System.out.println(sch);
         assertNotNull(sch);
@@ -97,8 +105,8 @@ class SchoolsRepositoryInfTest {
     @Test
     @Transactional
     void getById() throws SQLException {
-        //School schToFind = schools.get(0); // Poner uno que exista
-        School sch = repo.getById(4L); // Poner uno que exista
+//        School schToFind = schools.get(0);
+        School sch = repo.getById(4L);
         System.out.println(sch);
         assertNotNull(sch);
     }
@@ -126,6 +134,5 @@ class SchoolsRepositoryInfTest {
 
         tx.commit();
     }
-
 
 }

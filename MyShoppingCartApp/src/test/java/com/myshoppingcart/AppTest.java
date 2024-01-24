@@ -1,30 +1,26 @@
-package com.myshoppingcart.persistence;
+package com.myshoppingcart;
 
 import com.myshoppingcart.config.SpringConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
-class DBConnectorTest {
-
-    @Autowired
-    DBConnector dbc;
+@EnableAutoConfiguration
+class AppTest {
+    @PersistenceContext
+    EntityManager em;
 
     @Test
-    void connect_isOK() throws SQLException, IOException {
-        dbc.connect();
+    public void loadContext() {
         assertTrue(true);
-
     }
-
 }

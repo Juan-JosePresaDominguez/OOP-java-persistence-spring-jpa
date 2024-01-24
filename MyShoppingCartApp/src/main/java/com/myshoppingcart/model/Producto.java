@@ -5,21 +5,27 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.Set;
+
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Producto {
-
-    private Integer mid;
+    private Integer pid;
     private String codigo;
     private String marca;
     private String tipo;
     private double precio;
     private int existencias;
 
+    public Producto(Integer mid) {
+        this.pid = mid;
+    }
+
     public Producto(Integer id, String cod, double prec) {
-        this.mid = id;
+        this.pid = id;
         this.codigo = cod;
         this.precio = prec;
     }
