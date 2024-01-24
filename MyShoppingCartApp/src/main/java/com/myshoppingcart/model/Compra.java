@@ -25,7 +25,12 @@ public class Compra {
     @JoinColumn(name = "user_id")
     private Usuario usuario;
 
-    @Transient
+    @ManyToMany()
+    @JoinTable(
+            name = "compra_productos",
+            joinColumns =  {@JoinColumn(name = "compra_id")},
+            inverseJoinColumns = {@JoinColumn(name = "producto_id")}
+    )
     private List<Producto> productos;
     private LocalDate fecha;
 }

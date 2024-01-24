@@ -15,6 +15,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pid;
+
     private String codigo;
     private String marca;
     private String tipo;
@@ -25,10 +26,22 @@ public class Producto {
         this.pid = mid;
     }
 
+    @ManyToMany(mappedBy = "productos")
+    private Set<Compra> compras;
+
     public Producto(Integer id, String cod, double prec) {
         this.pid = id;
         this.codigo = cod;
         this.precio = prec;
     }
 
+    //Generar constructor (si el nuevo campo 'compras'
+    public Producto(Integer pid, String codigo, String marca, String tipo, double precio, int existencias) {
+        this.pid = pid;
+        this.codigo = codigo;
+        this.marca = marca;
+        this.tipo = tipo;
+        this.precio = precio;
+        this.existencias = existencias;
+    }
 }
