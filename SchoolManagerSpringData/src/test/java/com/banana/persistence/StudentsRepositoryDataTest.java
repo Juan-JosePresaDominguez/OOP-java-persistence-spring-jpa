@@ -77,4 +77,11 @@ class StudentsRepositoryDataTest {
         System.out.println("students:" + students);
         assertNotNull(students);
     }
+    @Test
+    @Transactional
+    void findByNombreEndsWithNative() throws SQLException {
+        List<Student> students = repoStudents.findByNombreWithNative("n");
+        System.out.println("students:" + students);
+        assertNotNull(students);
+    }
 }

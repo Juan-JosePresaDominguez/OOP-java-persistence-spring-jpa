@@ -19,4 +19,7 @@ public interface StudentsRepositoryData extends JpaRepository<Student, Long> {
     @Query("SELECT s from Student s WHERE s.nombre LIKE %:name")
     public List<Student> findByNombreWith(@Param("name") String trozodenombre);
 
+    @Query(value = "SELECT s.* from estudiante s WHERE s.name LIKE %:name", nativeQuery = true)
+    public List<Student> findByNombreWithNative(@Param("name") String trozodenombre);
+
 }
