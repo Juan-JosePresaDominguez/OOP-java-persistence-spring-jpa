@@ -11,9 +11,21 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Entity
 public class Compra {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cid;
+
+    //Unidireccional usuario - compra
+//    @ManyToOne()
+//    @JoinColumn(name = "user_id")
+    //Bidireccional usuario - usuario
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
     private Usuario usuario;
+
+    @Transient
     private List<Producto> productos;
     private LocalDate fecha;
 }
