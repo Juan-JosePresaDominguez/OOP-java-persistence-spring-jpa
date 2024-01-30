@@ -23,11 +23,15 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     private EntityManager em;
 
     @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void add(Student estudiante) {
         em.persist(estudiante);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Student update(Student estudiante) {
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());
@@ -69,6 +73,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Collection<Student> findByKeyword(String keyword) {
         TypedQuery<Student> q = em.createQuery("SELECT s FROM Student s WHERE s.nombre LIKE CONCAT('%',:keyword,'%')", Student.class);
         q.setParameter("keyword", keyword);
@@ -76,6 +81,7 @@ public class StudentsRepositoryJPA implements StudentsRepositoryInf {
     }
 
     @Override
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     public long count() {
         Query query = em.createQuery("SELECT count(*) FROM Student");
         return (long) query.getSingleResult();
