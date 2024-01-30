@@ -24,6 +24,7 @@ class StudentsRepositoryDataTest {
 
     @Autowired
     StudentsRepositoryData repoStudents;
+
     @Test
     @Transactional
     void getById() throws SQLException {
@@ -55,8 +56,8 @@ class StudentsRepositoryDataTest {
     @Test
     @Transactional
     void getAllByName() throws SQLException {
-        List<Student> students = repoStudents.findByNombre("Juan");
-        //List<Student> students = repoStudents.findByNombreIgnoreCase("Juan");
+        //List<Student> students = repoStudents.findByNombre("Juan");
+        List<Student> students = repoStudents.findByNombreIgnoreCase("Juan");
         System.out.println("students:" + students);
         assertNotNull(students);
     }

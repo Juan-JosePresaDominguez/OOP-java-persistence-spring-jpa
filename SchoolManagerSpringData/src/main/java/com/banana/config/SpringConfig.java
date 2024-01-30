@@ -13,5 +13,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.banana.models")
 @EnableJpaRepositories(basePackages = {"com.banana.persistence"})
 public class SpringConfig {
-
 }
