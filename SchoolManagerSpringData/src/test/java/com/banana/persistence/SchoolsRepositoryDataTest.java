@@ -27,7 +27,7 @@ class SchoolsRepositoryDataTest {
     @Autowired
     SchoolsRepositoryData repo;
 
-    @PersistenceContext
+    @PersistenceContext     // Inyectamos el EntityManager
     private EntityManager em;
 
 
